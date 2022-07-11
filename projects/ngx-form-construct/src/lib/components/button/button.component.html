@@ -1,0 +1,3 @@
+<button [type]="config.button.type" [ngClass]="config.button.classes ?? ''">
+  <i *ngIf="config.button.icon" [ngClass]="config.button.icon"></i>{{config.button.text}}
+</button>

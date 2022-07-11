@@ -1,0 +1,35 @@
+<form [formGroup]="formGroup">
+  <label *ngIf="config.label" [for]="config.array.name" [ngClass]="config.label.classes ?? ''">
+    {{config.label.text}}
+  </label>
+  <div [formArrayName]="config.array.name">
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let control of formArray.controls; index as i" [formGroupName]="i">
+            <td>{{i+1}}</td>
+            <td>
+              <div class="row">
+                <div *ngFor="let field of config.array.configs" [ngClass]="field.grid ?? ''">
+                  <ng-container formField [config]="field" [abstractControl]="control"></ng-container>
+                </div>
+              </div>
+            </td>
+            <td>
+              <button class="btn btn-outline-danger">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</form>

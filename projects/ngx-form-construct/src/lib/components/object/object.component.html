@@ -1,0 +1,5 @@
+<form [formGroup]="formGroup">
+  <div *ngFor="let config of config.object.configs">
+    <ng-container formField [config]="config" [formGroup]="newFormGroup"></ng-container>
+  </div>
+</form>
