@@ -1,6 +1,24 @@
 {
   "name": "form-construct",
   "version": "0.0.0",
+  "description": "Angular basic form construct",
+  "author": "gorden0929",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gorden0929/ngx-form-construct.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gorden0929/ngx-form-construct/issues"
+  },
+  "homepage": "https://github.com/gorden0929/ngx-form-construct",
+  "keywords": [
+    "angular",
+    "form",
+    "construct",
+    "bootstrap",
+    "typescript"
+  ],
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,7 +26,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^14.0.0",
     "@angular/common": "^14.0.0",
