@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { HtmlComponent } from '../../directives/form-field.directive';
 import { IFieldArray } from '../../interfaces/field.interface';
+import { CommonService } from '../../services/common.service';
 
 @HtmlComponent({ map: ['array'] })
 @Component({
@@ -15,12 +16,18 @@ export class ArrayComponent implements OnInit {
   formGroup!: FormGroup
   formArray!: FormArray;
 
-  constructor() { }
+  constructor(private privateCommonService: CommonService) { }
 
   ngOnInit(): void {
-    console.log(this.formGroup.controls[this.config.array.name].value);
-
     this.formArray = this.formGroup.controls[this.config.array.name] as FormArray;
+  }
+
+  addElement(): void {
+    this.formArray.push(this.privateCommonService.buildForm(this.config.array.configs));
+  }
+
+  removeElement(index: number): void {
+    this.formArray.removeAt(index);
   }
 
 }

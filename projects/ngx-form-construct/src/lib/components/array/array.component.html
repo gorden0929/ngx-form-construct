@@ -24,7 +24,12 @@
               </div>
             </td>
             <td>
-              <button class="btn btn-outline-danger">Remove</button>
+              <button type="button" class="btn btn-outline-danger" (click)="removeElement(i)">Remove</button>
+            </td>
+          </tr>
+          <tr>
+            <td [attr.colspan]="config.array.configs.length + 2">
+              <button type="button" class="btn btn-outline-primary" (click)="addElement()">Add</button>
             </td>
           </tr>
         </tbody>

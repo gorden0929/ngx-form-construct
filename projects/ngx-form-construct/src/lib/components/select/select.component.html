@@ -1,10 +1,15 @@
 <form [formGroup]="formGroup">
-  <label *ngIf="config.label" [for]="config.select.name" [ngClass]="config.label.classes ?? ''">
-    {{config.label.text}}
-  </label>
-  <select [ngClass]="config.select.classes ?? ''" [formControlName]="config.select.name">
-    <option *ngFor="let option of config.select.option.datas" [value]="option[config.select.option.value_property]">
-      {{option[config.select.option.key_property]}}
-    </option>
-  </select>
+  <div class="row">
+
+    <div [ngClass]="control.grid ?? ''" *ngFor="let control of config.select.fields">
+      <label *ngIf="control.label" [for]="formGroup + control.name" [ngClass]="control.label.classes ?? ''">
+        {{control.label.text}}
+      </label>
+      <select [ngClass]="control.classes ?? ''" [formControlName]="control.name">
+        <option *ngFor="let option of config.select.option.datas" [value]="option[config.select.option.value_property]">
+          {{option[config.select.option.key_property]}}
+        </option>
+      </select>
+    </div>
+  </div>
 </form>

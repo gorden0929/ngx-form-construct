@@ -16,8 +16,7 @@ export class InputComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   convertToType(): void {
     if (this.config.input.type === 'number') {
@@ -25,7 +24,7 @@ export class InputComponent implements OnInit {
     }
   }
 
-  get inputType() {
+  get inputType(): string {
     if (this.config.input.type === 'checkbox') {
       return 'checkbox';
     } else if (this.config.input.type === 'radio') {

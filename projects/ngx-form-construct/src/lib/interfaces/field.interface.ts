@@ -49,27 +49,35 @@ export interface IFieldInput extends IFieldBased {
   | IFieldInputText
   | IFieldInputNumber
   | IFieldInputEmail
+  | IFieldInputTel
   | IFieldInputCheckbox
   | IFieldInputRadio;
   // input: IFieldInputText | IFieldInputNumber
 }
 
 export interface IFieldInputText extends IValidator {
-  type: 'text'
+  type: 'text';
   name: string;
   placeholder?: string;
   classes?: string[];
 }
 
 export interface IFieldInputNumber extends IValidator {
-  type: 'number'
+  type: 'number';
   name: string;
   placeholder?: string;
   classes?: string[];
 }
 
 export interface IFieldInputEmail extends IValidator {
-  type: 'email'
+  type: 'email';
+  name: string;
+  placeholder?: string;
+  classes?: string[];
+}
+
+export interface IFieldInputTel extends IValidator {
+  type: 'tel';
   name: string;
   placeholder?: string;
   classes?: string[];
@@ -106,16 +114,21 @@ export interface IFieldObject extends IFieldBased {
 export interface IFieldSelect extends IFieldBased {
   type: 'select';
   select: {
-    name: string;
     option: {
       datas: any[];
       key_property: string;
       value_property: string;
-    }
-    placeholder?: string;
-    classes?: string[];
-    validators?: Validator[];
-    async_validators?: AsyncValidator[];
+    },
+    fields: {
+      name: string;
+      label?: {
+        text: string;
+        classes?: string[];
+      }
+      placeholder: string;
+      classes?: string[];
+      grid?: string[];
+    }[];
   }
 }
 

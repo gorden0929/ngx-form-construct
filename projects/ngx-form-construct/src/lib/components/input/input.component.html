@@ -1,24 +1,16 @@
 <form [formGroup]="formGroup">
-  <label *ngIf="config.label" [for]="config.input.name"
+  <label *ngIf="config.label" [for]="formGroup + config.input.name"
     [ngClass]="config.label.classes ?? ''">{{config.label.text}}</label>
-
   <ng-container
     [ngTemplateOutlet]="config.input.type === 'checkbox' ? checkbox : config.input.type === 'radio' ? radio : others"
     [ngTemplateOutletContext]="{config: config}">
   </ng-container>
-
-
-  <ng-template #checkbox let-config>
+  <ng-template #checkbox let-config="config">
   </ng-template>
-
-
-  <ng-template #radio let-config>
+  <ng-template #radio let-config="config">
   </ng-template>
-
-  <ng-template #others let-config>
-    <input [type]="config.input.type" [ngClass]="config.input.classes ?? ''" [formControlName]="config.input.name"
-      [placeholder]="config.input.placeholder" (change)="convertToType()">
+  <ng-template #others let-config="config">
+    <input [type]="config.input.type ?? 'text'" [ngClass]="config.input.classes ?? ''" [id]="formGroup + config.input.name"
+      [formControlName]="config.input.name" [placeholder]="config.input.placeholder ?? ''" (change)="convertToType()">
   </ng-template>
-
-
 </form>
