@@ -36,9 +36,7 @@ export class CommonService {
       }
 
       if (config.type === 'select') {
-        config.select.fields.forEach(field => {
-          formGroup.addControl(field.name, new FormControl(''));
-        })
+        formGroup.addControl(config.select.name, new FormControl(''));
       }
 
       if (config.type === 'textarea') {

@@ -2,7 +2,12 @@
   <label *ngIf="config.label" [for]="formGroup + config.input.name"
     [ngClass]="config.label.classes ?? ''">{{config.label.text}}</label>
   <ng-container
-    [ngTemplateOutlet]="config.input.type === 'checkbox' ? checkbox : config.input.type === 'radio' ? radio : others"
+    [ngTemplateOutlet]="
+    config.input.type === 'checkbox' 
+      ? checkbox 
+      : config.input.type === 'radio' 
+        ? radio 
+        : others"
     [ngTemplateOutletContext]="{config: config}">
   </ng-container>
   <ng-template #checkbox let-config="config">

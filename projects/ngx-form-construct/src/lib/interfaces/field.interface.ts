@@ -22,11 +22,13 @@ export interface IFieldArray extends IFieldBased {
   array: {
     name: string;
     add_button?: {
-      label: string;
+      label?: string;
+      icon?: string[];
       classes?: string[];
     }
     remove_button?: {
-      label: string;
+      label?: string;
+      icon?: string[];
       classes?: string[];
     }
     configs: IFieldConfig[];
@@ -46,17 +48,15 @@ export interface IFieldButton extends IFieldBased {
 export interface IFieldInput extends IFieldBased {
   type: 'input';
   input:
-  | IFieldInputText
+  | IFieldInputGeneral
   | IFieldInputNumber
-  | IFieldInputEmail
-  | IFieldInputTel
   | IFieldInputCheckbox
   | IFieldInputRadio;
   // input: IFieldInputText | IFieldInputNumber
 }
 
-export interface IFieldInputText extends IValidator {
-  type: 'text';
+export interface IFieldInputGeneral extends IValidator {
+  type: 'text' | 'email' | 'tel';
   name: string;
   placeholder?: string;
   classes?: string[];
@@ -67,20 +67,9 @@ export interface IFieldInputNumber extends IValidator {
   name: string;
   placeholder?: string;
   classes?: string[];
-}
-
-export interface IFieldInputEmail extends IValidator {
-  type: 'email';
-  name: string;
-  placeholder?: string;
-  classes?: string[];
-}
-
-export interface IFieldInputTel extends IValidator {
-  type: 'tel';
-  name: string;
-  placeholder?: string;
-  classes?: string[];
+  min?: number;
+  max?: number;
+  step?: number;
 }
 
 export interface IFieldInputCheckbox {
@@ -114,21 +103,12 @@ export interface IFieldObject extends IFieldBased {
 export interface IFieldSelect extends IFieldBased {
   type: 'select';
   select: {
-    option: {
-      datas: any[];
-      key_property: string;
-      value_property: string;
-    },
-    fields: {
-      name: string;
-      label?: {
-        text: string;
-        classes?: string[];
-      }
-      placeholder: string;
-      classes?: string[];
-      grid?: string[];
-    }[];
+    name: string;
+    data: any[],
+    placeholder?: string;
+    classes?: string[];
+    key_property?: string;
+    value_property?: string;
   }
 }
 

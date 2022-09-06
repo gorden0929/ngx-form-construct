@@ -33,6 +33,7 @@ export class NgxFormConstructComponent implements OnInit {
   }
 
   onSubmit() {
+    this.formGroup.markAllAsTouched();
     this.formOnSubmit.emit(this.formGroup.value);
   }
 }

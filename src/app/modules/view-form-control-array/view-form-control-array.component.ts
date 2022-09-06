@@ -17,6 +17,14 @@ export class ViewFormControlArrayComponent implements OnInit {
         type: 'array',
         array: {
           name: 'addresses',
+          add_button: {
+            icon: ['bi', 'bi-plus'],
+            classes: ['btn', 'btn-outline-primary', 'btn-sm']
+          },
+          remove_button: {
+            icon: ['bi', 'bi-trash'],
+            classes: ['btn', 'btn-outline-danger', 'btn-sm']
+          },
           configs: [
             {
               type: 'input',
@@ -46,36 +54,35 @@ export class ViewFormControlArrayComponent implements OnInit {
             },
             {
               type: 'select',
-              select: {
-                option: {
-                  datas: [{ name: 'Malaysia', value: 'MY' }, { name: 'Singapore', value: 'SG' }],
-                  key_property: 'name',
-                  value_property: 'value',
-                },
-                fields: [
-                  {
-                    name: 'country',
-                    placeholder: 'Select a country',
-                    classes: ['form-control', 'form-control-sm'],
-                    label: {
-                      text: 'Country',
-                      classes: ['form-label'],
-                    },
-                    grid: ['mb-2', 'col-12', 'col-md-6'],
-                  },
-                  {
-                    name: 'state',
-                    placeholder: 'Select a state',
-                    classes: ['form-control', 'form-control-sm'],
-                    label: {
-                      text: 'State',
-                      classes: ['form-label'],
-                    },
-                    grid: ['mb-2', 'col-12', 'col-md-6'],
-                  }
-                ]
+              label: {
+                text: 'Country',
+                classes: ['form-label'],
               },
-              grid: ['mb-2', 'col-12'],
+              select: {
+                data: [{ name: 'China', value: 'CN' }, { name: 'United States', value: 'US' }],
+                name: 'country',
+                placeholder: 'Select a country',
+                classes: ['form-select', 'form-select-sm'],
+                key_property: 'name',
+                value_property: 'value',
+              },
+              grid: ['mb-2', 'col-md-6'],
+            },
+            {
+              type: 'select',
+              label: {
+                text: 'State',
+                classes: ['form-label'],
+              },
+              select: {
+                data: [{ name: 'California', value: 'CA' }, { name: 'New York', value: 'NY' }],
+                name: 'state',
+                placeholder: 'Select a state',
+                classes: ['form-select', 'form-select-sm'],
+                key_property: 'name',
+                value_property: 'value',
+              },
+              grid: ['mb-2', 'col-md-6'],
             },
           ]
         }
@@ -97,7 +104,6 @@ export class ViewFormControlArrayComponent implements OnInit {
 
   formOnSubmit(event: any) {
     console.log(event);
-
   }
 
 }

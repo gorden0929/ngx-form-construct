@@ -1,28 +1,23 @@
-# Stage 1: Compile and Build angular codebase
+# Multi-stage
+# 1) Node image for building frontend assets
+# 2) nginx stage to serve frontend assets
 
-# Use official node image as the base image
-FROM node:16 as build
+# Name the node stage "builder"
+FROM node:16 AS builder
+# Set working directory
+WORKDIR /app
+# Copy all files from current directory to working dir in image
+COPY . .
+# install node modules and build assets
+RUN npm i && npm run build
 
-# Set the working directory
-WORKDIR /usr/local/app
-
-# Add the source code to app
-COPY ./ /usr/local/app/
-
-# Install all the dependencies
-RUN npm install
-
-# Generate the build of the application
-RUN npm run build
-
-
-# Stage 2: Serve app with nginx server
-
-# Use official nginx image as the base image
-FROM nginx:latest
-
-# Copy the build output to replace the default nginx contents.
-COPY --from=build /usr/local/app/dist/ngx-form-construct /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 80
+# nginx state for serving content
+FROM nginx:alpine
+# Set working directory to nginx asset directory
+WORKDIR /usr/share/nginx/html
+# Remove default nginx static assets
+RUN rm -rf ./*
+# Copy static assets from builder stage
+COPY --from=builder /app/dist/form-construct .
+# Containers run nginx with global directives and daemon off
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

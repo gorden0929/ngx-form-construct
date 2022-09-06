@@ -24,12 +24,18 @@
               </div>
             </td>
             <td>
-              <button type="button" class="btn btn-outline-danger" (click)="removeElement(i)">Remove</button>
+              <button type="button" [ngClass]="config.array.remove_button.classes ?? []"
+                *ngIf="config.array.remove_button" (click)="removeElement(i)">
+                <i [ngClass]="config.array.remove_button.icon" *ngIf="config.array.remove_button.icon"></i>
+                {{config.array.remove_button.label}}
+              </button>
             </td>
           </tr>
-          <tr>
+          <tr *ngIf="config.array.add_button">
             <td [attr.colspan]="config.array.configs.length + 2">
-              <button type="button" class="btn btn-outline-primary" (click)="addElement()">Add</button>
+              <button type="button" [ngClass]="config.array.add_button.classes ?? []" (click)="addElement()">
+                <i [ngClass]="config.array.add_button.icon" *ngIf="config.array.add_button.icon"></i>
+                {{config.array.add_button.label}}</button>
             </td>
           </tr>
         </tbody>
