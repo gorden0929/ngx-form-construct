@@ -23,6 +23,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:lib": "ng build ngx-form-construct",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
